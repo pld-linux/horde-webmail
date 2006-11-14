@@ -8,7 +8,8 @@
 %define	_rc		rc1
 %define	_rel	1.1
 %include	/usr/lib/rpm/macros.php
-Summary:	Template for horde projects
+Summary:	Browser based collaboration suite
+Summary(pl):	Oparte na przegl±darce narzêdzie do pracy grupowej
 Name:		horde-%{_hordeapp}
 Version:	1.0
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
@@ -49,7 +50,10 @@ under the GNU Public License. For more information (including help
 with Webmail) please visit <http://www.horde.org/>.
 
 %description -l pl
-WEBAPP
+Horde Groupware Webmail Edition to darmowe, gotowe do zastosowañ
+produkcyjnych narzêdzie do pracy grupowej. U¿ytkownicy mog± zarz±dzaæ
+i wspó³dzieliæ kalendarze, kontakty, zadania i notatki przy u¿yciu
+zgodnych ze standardem komponentów z projektu Horde.
 
 Projekt Horde tworzy aplikacje WWW w PHP i wydaje je na licencji GNU
 General Public License. Wiêcej informacji (w³±cznie z pomoc± dla
