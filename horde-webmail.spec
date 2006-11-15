@@ -5,8 +5,8 @@
 #   instead of the bundled ones.
 %define	_hordeapp webmail
 #define	_snap	2005-08-01
-%define	_rc		rc1
-%define	_rel	1.1
+%define	_rc		rc2
+%define	_rel	0.1
 %include	/usr/lib/rpm/macros.php
 Summary:	Browser based collaboration suite
 Summary(pl):	Oparte na przegl±darce narzêdzie do pracy grupowej
@@ -16,9 +16,9 @@ Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/horde-webmail/horde-webmail-1.0-%{_rc}.tar.gz
-# Source0-md5:	60189bee2b6b3978cdad90899e156129
-Source1:	%{name}.conf
-Patch0:		%{name}-prefs.patch
+# Source0-md5:	a57acbb6c1374b0fa0fdf59e89583eff
+#Source1:	%{name}.conf
+#Patch0:		%{name}-prefs.patch
 URL:		http://www.horde.org/webmail/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.264
