@@ -5,7 +5,7 @@
 #   instead of the bundled ones.
 %define	_hordeapp webmail
 #define	_snap	2005-08-01
-%define	_rc		rc2
+#define	_rc		rc2
 %define	_rel	0.1
 %include	/usr/lib/rpm/macros.php
 Summary:	Browser based collaboration suite
@@ -15,10 +15,10 @@ Version:	1.0
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	GPL v2
 Group:		Applications/WWW
-Source0:	ftp://ftp.horde.org/pub/horde-webmail/horde-webmail-1.0-%{_rc}.tar.gz
-# Source0-md5:	a57acbb6c1374b0fa0fdf59e89583eff
+Source0:	ftp://ftp.horde.org/pub/horde-webmail/horde-webmail-%{version}.tar.gz
+# Source0-md5:	7799a0f05273a22e37b839ddae24abaf
 #Source1:	%{name}.conf
-#Patch0:		%{name}-prefs.patch
+#Patch0:	%{name}-prefs.patch
 URL:		http://www.horde.org/webmail/
 BuildRequires:	rpm-php-pearprov >= 4.0.2-98
 BuildRequires:	rpmbuild(macros) >= 1.264
@@ -82,8 +82,10 @@ cp -a lib locale templates themes $RPM_BUILD_ROOT%{_appdir}
 
 ln -s %{_sysconfdir} $RPM_BUILD_ROOT%{_appdir}/config
 ln -s %{_docdir}/%{name}-%{version}/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
+%if 0
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+%endif
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -93,6 +95,7 @@ if [ ! -f %{_sysconfdir}/conf.php.bak ]; then
 	install /dev/null -o root -g http -m660 %{_sysconfdir}/conf.php.bak
 fi
 
+%if 0
 %triggerin -- apache1 < 1.3.37-3, apache1-base
 %webapp_register apache %{_webapp}
 
@@ -104,6 +107,7 @@ fi
 
 %triggerun -- apache < 2.2.0, apache-base
 %webapp_unregister httpd %{_webapp}
+%endif
 
 %files
 %defattr(644,root,root,755)
