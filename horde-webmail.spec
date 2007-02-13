@@ -9,7 +9,7 @@
 %define	_rel	0.1
 %include	/usr/lib/rpm/macros.php
 Summary:	Browser based collaboration suite
-Summary(pl.UTF-8):   Oparte na przeglądarce narzędzie do pracy grupowej
+Summary(pl.UTF-8):	Oparte na przeglądarce narzędzie do pracy grupowej
 Name:		horde-%{_hordeapp}
 Version:	1.0
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
