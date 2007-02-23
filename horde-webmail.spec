@@ -34,7 +34,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_noautoreq	'pear(Horde.*)'
 
 %define		hordedir	/usr/share/horde
-%define		_appdir		%{hordedir}/%{_hordeapp}
+#define		_appdir		%{hordedir}/%{_hordeapp}
+%define		_appdir		%{_datadir}/%{_hordeapp}
 %define		_webapps	/etc/webapps
 %define		_webapp		horde-%{_hordeapp}
 %define		_sysconfdir	%{_webapps}/%{_webapp}
@@ -113,8 +114,10 @@ fi
 %defattr(644,root,root,755)
 %doc README docs/* scripts
 %dir %attr(750,root,http) %{_sysconfdir}
+%if 0
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf
+%endif
 %attr(660,root,http) %config(noreplace) %{_sysconfdir}/conf.php
 %attr(660,root,http) %config(noreplace) %ghost %{_sysconfdir}/conf.php.bak
 %attr(640,root,http) %config(noreplace) %{_sysconfdir}/[!c]*.php
