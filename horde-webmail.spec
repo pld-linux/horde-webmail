@@ -65,14 +65,14 @@ Webmail) można znaleźć na stronie <http://www.horde.org/>.
 %setup -qcT -n %{?_snap:%{_hordeapp}-%{_snap}}%{!?_snap:%{_hordeapp}-%{version}%{?_rc:-%{_rc}}}
 tar zxf %{SOURCE0} --strip-components=1
 
-rm -f {,*/}.htaccess
+#rm -f {,*/}.htaccess
 for i in config/*.dist; do
 	mv $i config/$(basename $i .dist)
 done
 # considered harmful (horde/docs/SECURITY)
 find . -name test.php | xargs rm -f
 
-rm -r kronolith/scripts
+rm -rf {imp,ingo,kronolith,mnemo,nag}/{docs,scripts,LICENSE,README}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -141,6 +141,7 @@ fi
 %{_appdir}/mnemo
 %{_appdir}/nag
 %dir %{_appdir}/scripts
+%{_appdir}/scripts/.htaccess
 %{_appdir}/scripts/ldap
 %{_appdir}/scripts/sql
 %{_appdir}/scripts/upgrades
