@@ -6,7 +6,7 @@
 %define	_hordeapp webmail
 #define	_snap	2005-08-01
 #define	_rc		rc2
-%define	_rel	0.1
+%define	_rel	0.2
 %include	/usr/lib/rpm/macros.php
 Summary:	Browser based collaboration suite
 Summary(pl.UTF-8):	Oparte na przeglądarce narzędzie do pracy grupowej
@@ -31,7 +31,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # horde accesses it directly in help->about
 %define		_noautocompressdoc  CREDITS
-%define		_noautoreq	'pear(Horde.*)'
+# some lib/* contents
+%define		_noautoreq	'pear(Horde.*)' 'pear(Net/IMSP.*)' 'pear(SyncML.*)' 'pear(Text.*)' 'pear(VFS.*)' 'pear(XML/SVG.*)' 'pear(XML/WBXML.*)'
 
 %define		hordedir	/usr/share/horde
 #define		_appdir		%{hordedir}/%{_hordeapp}
@@ -69,7 +70,9 @@ for i in config/*.dist; do
 	mv $i config/$(basename $i .dist)
 done
 # considered harmful (horde/docs/SECURITY)
-rm test.php
+find . -name test.php | xargs rm -f
+
+rm -r kronolith/scripts
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -79,7 +82,8 @@ cp -a *.php $RPM_BUILD_ROOT%{_appdir}
 cp -a config/* $RPM_BUILD_ROOT%{_sysconfdir}
 echo '<?php ?>' > $RPM_BUILD_ROOT%{_sysconfdir}/conf.php
 touch $RPM_BUILD_ROOT%{_sysconfdir}/conf.php.bak
-cp -a lib locale templates themes $RPM_BUILD_ROOT%{_appdir}
+# XXX: system imp,kronolith,mnemo,nag,turba
+cp -a admin imp ingo js kronolith lib locale mnemo nag scripts services templates themes turba util $RPM_BUILD_ROOT%{_appdir}
 
 ln -s %{_sysconfdir} $RPM_BUILD_ROOT%{_appdir}/config
 ln -s %{_docdir}/%{name}-%{version}/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
@@ -125,9 +129,32 @@ fi
 
 %dir %{_appdir}
 %{_appdir}/*.php
+%{_appdir}/admin
 %{_appdir}/config
 %{_appdir}/docs
+%{_appdir}/imp
+%{_appdir}/ingo
+%{_appdir}/js
+%{_appdir}/kronolith
 %{_appdir}/lib
 %{_appdir}/locale
+%{_appdir}/mnemo
+%{_appdir}/nag
+%dir %{_appdir}/scripts
+%{_appdir}/scripts/ldap
+%{_appdir}/scripts/sql
+%{_appdir}/scripts/upgrades
+%{_appdir}/scripts/cookie_login.php
+%{_appdir}/scripts/get_login.php
+%{_appdir}/scripts/http_login_refer.php
+# XXX: include some files as doc only? but setup.php is needed in this place
+%attr(755,root,root) %{_appdir}/scripts/count_sessions.php
+%attr(755,root,root) %{_appdir}/scripts/migrate_user_categories.php
+%attr(755,root,root) %{_appdir}/scripts/remove_prefs.php
+%attr(755,root,root) %{_appdir}/scripts/setup.php
+%attr(755,root,root) %{_appdir}/scripts/themes_check.php
+%{_appdir}/services
 %{_appdir}/templates
 %{_appdir}/themes
+%{_appdir}/turba
+%{_appdir}/util
