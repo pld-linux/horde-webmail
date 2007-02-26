@@ -32,7 +32,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # horde accesses it directly in help->about
 %define		_noautocompressdoc  CREDITS
 # some lib/* contents
-%define		_noautoreq	'pear(Horde.*)' 'pear(Net/IMSP.*)' 'pear(SyncML.*)' 'pear(Text.*)' 'pear(VFS.*)' 'pear(XML/SVG.*)' 'pear(XML/WBXML.*)'
+%define		_noautoreq	'pear(Horde.*)' 'pear(\.\./lib.*)' 'pear(Net/IMSP.*)' 'pear(SyncML.*)' 'pear(Text.*)' 'pear(VFS.*)' 'pear(XML/SVG.*)' 'pear(XML/WBXML.*)'
 
 %define		hordedir	/usr/share/horde
 #define		_appdir		%{hordedir}/%{_hordeapp}
