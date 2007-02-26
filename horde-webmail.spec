@@ -36,7 +36,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		hordedir	/usr/share/horde
 #define		_appdir		%{hordedir}/%{_hordeapp}
-%define		_appdir		%{_datadir}/%{_hordeapp}
+%define		_appdir		%{_datadir}/horde-%{_hordeapp}
 %define		_webapps	/etc/webapps
 %define		_webapp		horde-%{_hordeapp}
 %define		_sysconfdir	%{_webapps}/%{_webapp}
