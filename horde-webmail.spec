@@ -11,12 +11,12 @@
 Summary:	Browser based collaboration suite
 Summary(pl.UTF-8):	Oparte na przeglądarce narzędzie do pracy grupowej
 Name:		horde-%{_hordeapp}
-Version:	1.0
+Version:	1.0.2
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{_rel}
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/horde-webmail/horde-webmail-%{version}.tar.gz
-# Source0-md5:	7799a0f05273a22e37b839ddae24abaf
+# Source0-md5:	439f411efd4e4182cdc40cea589efce9
 #Source1:	%{name}.conf
 #Patch0:	%{name}-prefs.patch
 URL:		http://www.horde.org/webmail/
@@ -150,10 +150,13 @@ fi
 %{_appdir}/scripts/http_login_refer.php
 # XXX: include some files as doc only? but setup.php is needed in this place
 %attr(755,root,root) %{_appdir}/scripts/count_sessions.php
-%attr(755,root,root) %{_appdir}/scripts/migrate_user_categories.php
+#%attr(755,root,root) %{_appdir}/scripts/migrate_user_categories.php
 %attr(755,root,root) %{_appdir}/scripts/remove_prefs.php
 %attr(755,root,root) %{_appdir}/scripts/setup.php
-%attr(755,root,root) %{_appdir}/scripts/themes_check.php
+#%attr(755,root,root) %{_appdir}/scripts/themes_check.php
+%attr(755,root,root) %{_appdir}/scripts/create-symlinks.php
+%attr(755,root,root) %{_appdir}/scripts/set_perms.sh
+%attr(755,root,root) %{_appdir}/scripts/temp-cleanup.cron
 %{_appdir}/services
 %{_appdir}/templates
 %{_appdir}/themes
