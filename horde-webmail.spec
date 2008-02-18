@@ -3,20 +3,20 @@
 # - make it use system IMP, Ingo, Kronolith, Turba, Nag and Mnemo packages
 # - system PEAR packages
 #   instead of the bundled ones.
-%define	_hordeapp webmail
-#define	_snap	2005-08-01
-#define	_rc		rc2
-%define	rel	0.2
+%define		hordeapp webmail
+#define		_snap	2005-08-01
+#define		_rc		rc2
+%define		rel	1
 %include	/usr/lib/rpm/macros.php
 Summary:	Browser based collaboration suite
 Summary(pl.UTF-8):	Oparte na przeglądarce narzędzie do pracy grupowej
-Name:		horde-%{_hordeapp}
-Version:	1.0.3
+Name:		horde-%{hordeapp}
+Version:	1.0.5
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{rel}
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/horde-webmail/horde-webmail-%{version}.tar.gz
-# Source0-md5:	ab99093f56302be24a099f1a2b03d4ba
+# Source0-md5:	12ae40c087344b1dc71202b4edbc6ce8
 #Source1:	%{name}.conf
 #Patch0:	%{name}-prefs.patch
 URL:		http://www.horde.org/webmail/
@@ -35,10 +35,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_noautoreq	'pear(Horde.*)' 'pear(\.\./lib.*)' 'pear(Net/IMSP.*)' 'pear(SyncML.*)' 'pear(Text.*)' 'pear(VFS.*)' 'pear(XML/SVG.*)' 'pear(XML/WBXML.*)'
 
 %define		hordedir	/usr/share/horde
-#define		_appdir		%{hordedir}/%{_hordeapp}
-%define		_appdir		%{_datadir}/horde-%{_hordeapp}
+#define		_appdir		%{hordedir}/%{hordeapp}
+%define		_appdir		%{_datadir}/horde-%{hordeapp}
 %define		_webapps	/etc/webapps
-%define		_webapp		horde-%{_hordeapp}
+%define		_webapp		horde-%{hordeapp}
 %define		_sysconfdir	%{_webapps}/%{_webapp}
 
 %description
@@ -62,7 +62,7 @@ General Public License. Więcej informacji (włącznie z pomocą dla
 Webmail) można znaleźć na stronie <http://www.horde.org/>.
 
 %prep
-%setup -qcT -n %{?_snap:%{_hordeapp}-%{_snap}}%{!?_snap:%{_hordeapp}-%{version}%{?_rc:-%{_rc}}}
+%setup -qcT -n %{?_snap:%{hordeapp}-%{_snap}}%{!?_snap:%{hordeapp}-%{version}%{?_rc:-%{_rc}}}
 tar zxf %{SOURCE0} --strip-components=1
 
 #rm -f {,*/}.htaccess
