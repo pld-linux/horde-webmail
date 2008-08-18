@@ -11,12 +11,12 @@
 Summary:	Browser based collaboration suite
 Summary(pl.UTF-8):	Oparte na przeglądarce narzędzie do pracy grupowej
 Name:		horde-%{hordeapp}
-Version:	1.0.5
+Version:	1.0.6
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{rel}
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/horde-webmail/horde-webmail-%{version}.tar.gz
-# Source0-md5:	12ae40c087344b1dc71202b4edbc6ce8
+# Source0-md5:	c0b1038a521b0df0d4587a955dff459c
 #Source1:	%{name}.conf
 #Patch0:	%{name}-prefs.patch
 URL:		http://www.horde.org/webmail/
@@ -65,14 +65,14 @@ Webmail) można znaleźć na stronie <http://www.horde.org/>.
 %setup -qcT -n %{?_snap:%{hordeapp}-%{_snap}}%{!?_snap:%{hordeapp}-%{version}%{?_rc:-%{_rc}}}
 tar zxf %{SOURCE0} --strip-components=1
 
-#rm -f {,*/}.htaccess
+rm -f {,*/}.htaccess
 for i in config/*.dist; do
 	mv $i config/$(basename $i .dist)
 done
 # considered harmful (horde/docs/SECURITY)
-find . -name test.php | xargs rm -f
+find -name test.php | xargs rm -f
 
-rm -rf {imp,ingo,kronolith,mnemo,nag}/{docs,scripts,LICENSE,README}
+rm -rf {imp,ingo,kronolith,mnemo,nag}/{docs,scripts,LICENSE}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -116,7 +116,7 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README docs/* scripts
+%doc README docs/*
 %dir %attr(750,root,http) %{_sysconfdir}
 %if 0
 %attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/apache.conf
@@ -141,6 +141,7 @@ fi
 %{_appdir}/mnemo
 %{_appdir}/nag
 %dir %{_appdir}/scripts
+%{_appdir}/scripts/SCRIPTS
 %{_appdir}/scripts/.htaccess
 %{_appdir}/scripts/ldap
 %{_appdir}/scripts/sql
