@@ -6,17 +6,17 @@
 %define		hordeapp webmail
 #define		_snap	2005-08-01
 #define		_rc		rc2
-%define		rel	1
+%define		rel		0.1
 %include	/usr/lib/rpm/macros.php
 Summary:	Browser based collaboration suite
 Summary(pl.UTF-8):	Oparte na przeglądarce narzędzie do pracy grupowej
 Name:		horde-%{hordeapp}
-Version:	1.0.6
+Version:	1.1.2
 Release:	%{?_rc:0.%{_rc}.}%{?_snap:0.%(echo %{_snap} | tr -d -).}%{rel}
 License:	GPL v2
 Group:		Applications/WWW
 Source0:	ftp://ftp.horde.org/pub/horde-webmail/horde-webmail-%{version}.tar.gz
-# Source0-md5:	c0b1038a521b0df0d4587a955dff459c
+# Source0-md5:	b53e42aa39135dad48002aab0c2e4288
 #Source1:	%{name}.conf
 #Patch0:	%{name}-prefs.patch
 URL:		http://www.horde.org/webmail/
@@ -142,20 +142,17 @@ fi
 %{_appdir}/nag
 %dir %{_appdir}/scripts
 %{_appdir}/scripts/SCRIPTS
-%{_appdir}/scripts/.htaccess
 %{_appdir}/scripts/ldap
 %{_appdir}/scripts/sql
 %{_appdir}/scripts/upgrades
 %{_appdir}/scripts/cookie_login.php
 %{_appdir}/scripts/get_login.php
+%{_appdir}/scripts/horde.logrotate
 %{_appdir}/scripts/http_login_refer.php
 # XXX: include some files as doc only? but setup.php is needed in this place
-%attr(755,root,root) %{_appdir}/scripts/count_sessions.php
-#%attr(755,root,root) %{_appdir}/scripts/migrate_user_categories.php
-%attr(755,root,root) %{_appdir}/scripts/remove_prefs.php
 %attr(755,root,root) %{_appdir}/scripts/setup.php
-#%attr(755,root,root) %{_appdir}/scripts/themes_check.php
-%attr(755,root,root) %{_appdir}/scripts/create-symlinks.php
+%attr(755,root,root) %{_appdir}/scripts/alarms.php
+%attr(755,root,root) %{_appdir}/scripts/import_squirrelmail_prefs.php
 %attr(755,root,root) %{_appdir}/scripts/set_perms.sh
 %attr(755,root,root) %{_appdir}/scripts/temp-cleanup.cron
 %{_appdir}/services
