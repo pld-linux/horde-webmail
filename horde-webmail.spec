@@ -29,8 +29,6 @@ Requires:	webapps
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-# horde accesses it directly in help->about
-%define		_noautocompressdoc  CREDITS
 # some lib/* contents
 %define		_noautoreq	'pear(Horde.*)' 'pear(\.\./lib.*)' 'pear(Net/IMSP.*)' 'pear(SyncML.*)' 'pear(Text.*)' 'pear(VFS.*)' 'pear(XML/SVG.*)' 'pear(XML/WBXML.*)'
 
@@ -84,9 +82,9 @@ echo '<?php ?>' > $RPM_BUILD_ROOT%{_sysconfdir}/conf.php
 touch $RPM_BUILD_ROOT%{_sysconfdir}/conf.php.bak
 # XXX: system imp,kronolith,mnemo,nag,turba
 cp -a admin imp ingo js kronolith lib locale mnemo nag scripts services templates themes turba util $RPM_BUILD_ROOT%{_appdir}
+cp -a docs/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
 
 ln -s %{_sysconfdir} $RPM_BUILD_ROOT%{_appdir}/config
-ln -s %{_docdir}/%{name}-%{version}/CREDITS $RPM_BUILD_ROOT%{_appdir}/docs
 %if 0
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/apache.conf
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
